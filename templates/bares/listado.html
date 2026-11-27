@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titulo %} Bares - De Tapeo por Cáidz{% endblock %}
+
+{% block contenido %}
+<h1>Bares</h1>
+<ul>
+    {% for bar in bares %}
+    <a href="{% url 'detalle' bar.id %}">{{ bar.nombre }} — {{ bar.barrio }}</a>
+    <li>{{ bar.nombre }} — {{ bar.barrio }} </li>
+    {% empty %}
+
+    <li>No hay bares (todavía).</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

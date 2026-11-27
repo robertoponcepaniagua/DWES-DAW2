@@ -9,4 +9,5 @@ urlpatterns = [
     path("bares/buscar/", views.buscar, name="buscar"),
     path("bares/<int:pk>/", views.detalle, name="detalle"),
     path("bares/<int:pk>/plato/", views.plato, name="plato"),
+    path("bares/<int:pk>/", views.detalle, name="detalle")
 ]

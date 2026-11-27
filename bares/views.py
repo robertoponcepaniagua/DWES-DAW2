@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.utils.html import escape
+from django.shortcuts import render
 
 
 BARES = [
@@ -17,7 +18,8 @@ def portada(request):
 
 
 def listado(request):
-    return HttpResponse("Aquí irá el listado de bares.")
+    context = {"bares": BARES}
+    return render(request, "bares/listado.html", context)
 
 
 def inspector(request):
@@ -61,11 +63,7 @@ def buscar(request):
 def detalle(request, pk):
     for bar in BARES:
         if bar["id"] == pk:
-            return HttpResponse(
-                f"<h1>{escape(bar['nombre'])}</h1>"
-                f"<p>Barrio: {escape(bar['barrio'])}</p>"
-            )
-
+            return render(request, "bares/detalle.html", {"bar": bar})
     return HttpResponseNotFound("No hay ningún bar con ese identificador.")
 
 
